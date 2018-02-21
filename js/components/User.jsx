@@ -28,18 +28,16 @@ class User extends React.Component {
       }}>
         <div>
           <form action=""onChange={this.changeInput}>
-            <label>Imię
+            <label>Your Name :
               <input id="name" type="text"  value={this.state.name}/>
             </label>
-            <input type="submit" value="Potwierdzam"  />
+            <input type="submit" value="SUBMIT"  />
           </form>
         </div>
         <div>
           Name: {this.state.name}
         </div>
-        <div>
-          Points:
-        </div>
+        
       </section>
     )
 
