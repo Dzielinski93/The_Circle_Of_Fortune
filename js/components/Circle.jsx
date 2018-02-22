@@ -10,73 +10,7 @@ class Circle extends React.Component {
     }
 }
 
-// bankrupt(){
-//
-// }
-//
-// looseAturn(){
-//
-// }
-//
-// points900(){
-//
-// }
-// points300(){
-//
-// }
-//
-// points500(){
-//
-// }
-//
-// points200(){
-//
-// }
-//
-// points400(){
-//
-// }
-// points550(){
-//
-// }
-//
-// points5000(){
-//
-// }
-//
-// points600(){
-//
-// }
-//
-// points700(){
-//
-// }
-// points1500(){
-//
-// }
-// points350(){
-//
-// }
-// points250(){
-//
-// }
-//
-// getMyPoints(){
-//   bankrupt()
-//   looseAturn()
-//   points900()
-//   points300()
-//   points500()
-//   points200()
-//   points400()
-//   points550()
-//   points5000()
-//   points600()
-//   points700()
-//   points1500()
-//   points350()
-//   points250()
-// }
+
 
 circleCounter(){
   return Math.floor((Math.random() * 24) + 1)
@@ -96,7 +30,7 @@ circleCounter(){
           </div>
           <div>
              <img src="../images/adrian_s_wheel_of_fortune_r3_by_packardadrian-d6rdol1.png" alt="" style={{transform:
-               `rotate(${this.props.degree}deg)`, transition:" all 4s linear"}}/>
+               `rotate(${this.props.degree}deg)`, transition:" all 4s linear" border: '1px solid red'}}/>
           </div>
           <div>
              <button onClick={this.props.handleClick}>START</button>
