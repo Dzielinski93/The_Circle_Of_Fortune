@@ -6,18 +6,41 @@ class Task extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      userAnswer:''
+      shuffledQuestions: [...this.props.answers].sort(() => Math.random() - 0.5),
+      userAnswer:'',
+      wrongAnswer:''
      }
  }
-checkAnswer(){
+
+componentWillReceiveProps(nextProps){
+   if (nextProps.answers !== this.props.answers) {
+     this.setState({
+       shuffledQuestions: [...nextProps.answers].sort(() => Math.random() - 0.5)
+     })
+   }
+ }
+checkAnswer=()=>{
   this.setState({
-   userAnswer:this.props.value
+   userAnswer:this.props.id
   });
+}
+
+givePoints=()=>{
+    this.props.method(this.state.userAnswer == this.props.rightAnswer)
+
+}
+
+
+handleChange = (event)=> {
+
+  this.setState({
+    [event.target.id]: event.target.value
+  })
+
 }
  //on click z value wrzucic do state
   render() {
 
-  const shuffleArray =  [...this.props.answers].sort(() => Math.random() - 0.5);
   return (
   <section style={{
         border: '1px solid red'
@@ -25,15 +48,21 @@ checkAnswer(){
         <div>
           <h3>{this.props.question}</h3>
         </div>
-        {shuffleArray.map(answer => (
+        {this.state.shuffledQuestions.map(answer => (
           <div>
           <label>
-            <input type="radio" className="radio" value={answer} name="answer" onClick={this.checkAnswer}/>{answer}</label>
+            <input type="radio" className="radio" value={answer} id='userAnswer' name="answer" onClick={this.checkAnswer} onChange={this.handleChange}/>{answer}</label>
           </div>
         )
       )
     }
-    <button onClick={this.props.givePoints}>SUBMIT</button>
+    <button
+    onClick={()=>{this.givePoints();}}>
+
+    SUBMIT
+
+    </button>
+
   </section>
     )
   }

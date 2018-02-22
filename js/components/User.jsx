@@ -6,8 +6,8 @@ class User extends React.Component {
     super(props);
     this.state = {
 
-      name: ''
-
+      name: '',
+      empty:''
     };
   }
 
@@ -21,6 +21,7 @@ class User extends React.Component {
 
   }
 
+
   render() {
     return (
       <section style={{
@@ -29,15 +30,15 @@ class User extends React.Component {
         <div>
           <form action=""onChange={this.changeInput}>
             <label>Your Name :
-              <input id="name" type="text"  value={this.state.name}/>
+              <input id="name" type="text" onChange={this.changeInput} value={this.state.name}/>
             </label>
-            <input type="submit" value="SUBMIT"  />
+            <button onClick={this.giveName} >SUBMIT</button>
           </form>
         </div>
         <div>
           Name: {this.state.name}
         </div>
-        
+
       </section>
     )
 

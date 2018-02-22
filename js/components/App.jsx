@@ -18,7 +18,8 @@ class App extends React.Component {
     randomDegree: 0,
     degreePoints: 0,
     pointsSum:0,
-    answerOfUser: ''
+    answerOfUser: '',
+    wrongAnswer:''
     }
 
     fetch(`https://opentdb.com/api.php?amount=50&category=18&type=multiple`)
@@ -67,7 +68,7 @@ getRandomDegree(degreeNumber){
 getDegreePoints(degreeNumber){
   const pointsDegree = points[degreeNumber].fieldEffect
   this.setState({
-   degreePoints:pointsDegree
+   degreePoints:Number(pointsDegree)
   });
 }
 
@@ -87,6 +88,8 @@ getAnswers(number){
   });
 }
 
+
+
 checkBankrupt(pointsDegree){
     let points;
       if(this.pointsDegree === 'bankrupt'){
@@ -97,21 +100,12 @@ checkBankrupt(pointsDegree){
     });
 }
 
-// checkCorrectAnswer(pointsDegree){
-//   let sumOfPoints
-//   if (this.value == this.state.rightAnswers) {
-//      sumOfPoints += pointsDegree
-//   }else{
-//     return (
-//       <p>
-//       zła odpowiedź nie ma punktów
-//     </p>
-//   )
-//   }
-//   this.setState({
-//     pointsSum:sumOfPoints
-//   });
-// }
+clearError(){
+  this.setState({
+    wrongAnswer: ''
+  })
+}
+
 
 getTaskDetails(){
   const number = this.counter()
@@ -122,22 +116,39 @@ getTaskDetails(){
   this.getRandomDegree(degreeNumber)
   this.getDegreePoints(degreeNumber)
   this.checkBankrupt(pointsDegree)
+  this.clearError()
 }
 
-toSubmitButton(){
+userAnswerEvent=(item)=>{
 
+  if (item==true) {
+
+      this.setState({
+      pointsSum: this.state.pointsSum += this.state.degreePoints
+ })
+  }else{
+    this.setState({
+      wrongAnswer:<p>WRONG ANSWER</p>
+    })
+  }
 }
 
 render() {
+console.log(this.state.rightAnswers);
       return (
         <section>
           <Header/>
           <User/>
           <Circle
-            handleClick={this.getTaskDetails.bind(this)} degree={this.state.randomDegree} points={this.state.pointsSum}/>
+            handleClick={this.getTaskDetails.bind(this)} degree={this.state.randomDegree} points={this.state.pointsSum} wrongAnswer={this.state.wrongAnswer}
+            method={this.userAnswerEvent}/>
           <Task
+            method={this.userAnswerEvent}
             answers={this.state.answers} question={this.state.question} rightAnswer={this.state.rightAnswers}
-            givePoints={this.checkCorrectAnswer.bind(this)}/>
+            points={this.state.pointsSum}
+            degreePoints={this.state.degreePoints}
+
+            />
           <Footer/>
 
         </section>
