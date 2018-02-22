@@ -15,7 +15,9 @@ class App extends React.Component {
     answers: [],
     question: '',
     rightAnswers: '',
-    randomDegree: null
+    randomDegree: 0,
+    degreePoints: 0,
+    pointsSum:0
     }
 
     fetch(`https://opentdb.com/api.php?amount=50&category=18&type=multiple`)
@@ -35,25 +37,36 @@ class App extends React.Component {
       }, ()=>{
         const degreeNumber = this.circleCounter()
         const number = this.counter()
+        const pointsDegree = points[degreeNumber].fieldEffect
+        const answers = this.state.answers
         this.getOneQuestion(number)
         this.getAnswers(number)
         this.getRandomDegree(degreeNumber)
+        this.getDegreePoints(degreeNumber)
+
       })
     })
 }
 
 counter() {
-    return Math.floor((Math.random() * 50) + 1)
+    return Math.floor((Math.random() * 49) )
 }
 
 circleCounter(){
-  return Math.floor((Math.random() * 24) + 1)
+  return Math.floor((Math.random() * 23) )
 }
 
 getRandomDegree(degreeNumber){
-
+  const newDegree = points[degreeNumber].rotateDegree
   this.setState({
-   randomDegree: points[degreeNumber].rotateDegree
+   randomDegree:newDegree
+  });
+}
+
+getDegreePoints(degreeNumber){
+  const pointsDegree = points[degreeNumber].fieldEffect
+  this.setState({
+   degreePoints:pointsDegree
   });
 }
 
@@ -73,22 +86,46 @@ getAnswers(number){
   });
 }
 
+checkBankrupt(pointsDegree){
+    let points;
+      if(this.pointsDegree === 'bankrupt'){
+        points = 0;
+      }
+    this.setState({
+      pointsSum:points
+    });
+}
+
+checkCorrectAnswer(pointsDegree){
+  let sumOfPoints
+  if (this.state.rightAnswers.checked) {
+     sumOfPoints += pointsDegree
+  }
+  this.setState({
+    pointsSum:sumOfPoints
+  });
+}
 
 getTaskDetails(){
   const number = this.counter()
+  const degreeNumber = this.circleCounter()
+  const pointsDegree = points[degreeNumber].fieldEffect
   this.getAnswers(number)
   this.getOneQuestion(number)
   this.getRandomDegree(degreeNumber)
+  this.getDegreePoints(degreeNumber)
+  this.checkBankrupt(pointsDegree)
 }
 
 render() {
-console.log(this.state.randomDegree);
+  console.log(this.state.rightAnswers);
       return (
         <section>
           <Header/>
           <User/>
-          <Circle handleClick={this.getTaskDetails.bind(this)} degree={this.state.randomDegree}/>
-          <Task answers={this.state.answers} question={this.state.question} rightAnswer={this.state.rightAnswers}/>
+          <Circle handleClick={this.getTaskDetails.bind(this)} degree={this.state.randomDegree} points={this.state.pointsSum}/>
+          <Task answers={this.state.answers} question={this.state.question} rightAnswer={this.state.rightAnswers}
+          givePoints={this.checkCorrectAnswer.bind(this)}/>
           <Footer/>
 
         </section>

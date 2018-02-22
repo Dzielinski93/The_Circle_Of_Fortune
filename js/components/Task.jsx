@@ -18,13 +18,12 @@ class Task extends React.Component {
         {shuffleArray.map(answer => (
           <div>
           <label>
-            <input type="radio" className="radio" value="1" name="same"/>{answer}</label>
-
+            <input type="radio" className="radio" value={answer} name="answer"/>{answer}</label>
           </div>
         )
       )
     }
-    <button>SUBMIT</button>
+    <button onClick={this.props.givePoints}>SUBMIT</button>
   </section>
     )
   }
