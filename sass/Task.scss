@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+.taskSection {
+  background: #274046;
+  font-family: "Lobster", sans-serif;
+}
+
+.tasks{
+  max-width: 800px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 20px;
+}
+
+.allQuestion{
+  max-width: 900px;
+  margin: 0 auto;
+  background: #e6dada;
+  border-radius: 20px;
+  padding: 10px 10px 75px 10px;
+  position: relative;
+
+}
+
+h3 {
+     font-family: "Lobster", sans-serif;
+     font-size: 30px;
+     padding-top: 15px;
+ }
+ .animate
+ {
+ 	transition: all 0.1s;
+ 	-webkit-transition: all 0.1s;
+ }
+
+ .action-buttons{
+
+  padding: 10px 40px;
+  position: absolute;
+ 	border-radius: 10px;
+ 	font-family: 'Lobster', cursive;
+ 	font-size: 25px;
+ 	color: #333333;
+ 	text-decoration: none;
+  left:390px;
+ }
+
+ .blue
+ {
+ 	background-color: white;
+ 	border-bottom: 5px solid #333333;
+   border-left: 1px solid #333333;
+   border-right: 1px solid #333333;
+   border-top: 1px solid #333333;
+ }
+
+
+ .action-button:active
+ {
+ 	transform: translate(0px,5px);
+   -webkit-transform: translate(0px,5px);
+ 	border-bottom: 1px solid;
+ }

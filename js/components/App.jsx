@@ -109,7 +109,7 @@ class App extends React.Component {
       })
     } else {
       this.setState({
-        wrongAnswer: <p>WRONG ANSWER</p>
+        wrongAnswer: 'WRONG ANSWER'
       })
     }
   }
@@ -121,7 +121,9 @@ class App extends React.Component {
         <Header/>
         <User userName={this.state.userName} onButtonClick={this.getName.bind(this)}/>
         <Circle degree={this.state.randomDegree} points={this.state.pointsSum} wrongAnswer={this.state.wrongAnswer} method={this.userAnswerEvent}/>
-        <Task isQuestionAvailable={!!this.state.question} method={this.userAnswerEvent} answers={this.state.answers} question={this.state.question} rightAnswer={this.state.rightAnswers} points={this.state.pointsSum} degreePoints={this.state.degreePoints} onSubmit={this.getTaskDetails.bind(this)}/>
+        <Task isQuestionAvailable={!!this.state.question} method={this.userAnswerEvent} answers={this.state.answers} question={this.state.question} rightAnswer={this.state.rightAnswers} points={this.state.pointsSum} degreePoints={this.state.degreePoints} onSubmit={this.getTaskDetails.bind(this)}
+        wrongAnswer={this.state.wrongAnswer}/>
+
         <Footer/>
 
       </section>

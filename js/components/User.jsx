@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import '../../sass/User.scss'
 class User extends React.Component {
 
   constructor(props) {
@@ -19,24 +19,26 @@ class User extends React.Component {
 
   render() {
     return (
-      <section style={{
-        border: '1px solid red'
-      }}>
-        <div>
-          <form action="" onChange={this.changeInput}>
-            <label>Your Name :
-              <input id="name" type="text" onChange={this.changeInput} value={this.state.name}/>
-            </label>
-            <button onClick={(e) => {
-              e.preventDefault()
-              this.props.onButtonClick(this.state.name)
-              this.setState({name: ''})
-            }}>
-            SUBMIT
-            </button>
-          </form>
-        </div>
-        <div>
+      <section className='userSection'>
+        <div className='user'>
+          <div>
+            <form className="form" action="" onChange={this.changeInput}>
+
+              <input className="question" id="name" type="text" onChange={this.changeInput} value={this.state.name}/>
+              <label for='name'>
+                <span>What's your name?</span>
+              </label>
+              <button className="action-buttons shadow animate blue" onClick={(e) => {
+                e.preventDefault()
+                this.props.onButtonClick(this.state.name)
+                this.setState({name: ''})
+              }}>
+                SUBMIT
+              </button>
+            </form>
+          </div>
+        </div><br/>
+        <div className='player'>
           Player: {this.props.userName && this.props.userName}
         </div>
       </section>

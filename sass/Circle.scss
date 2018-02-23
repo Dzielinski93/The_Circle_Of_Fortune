@@ -1,3 +1,41 @@
-.dupa {
-  font-size: 55px;
+@import url('https://fonts.googleapis.com/css?family=Lobster');
+
+.circleSection{
+  width: 100%;
+  background: #e6dada; /* fallback for old browsers */
+  background: -webkit-linear-gradient(to bottom, #e6dada, #274046); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to bottom, #e6dada, #274046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  font-family: "Lobster", sans-serif;
+  padding-bottom: 15px;
+}
+.pointsCircleContainer{
+  width: 100%;
+  max-width: 1062px;
+  margin: 0 auto;
+}
+.score{
+  font-size: 45px;
+}
+.myCircle{
+
+  margin-left: 190px;
+  width: 65%;
+  margin-top: 90px;
+  z-index: 0;
+}
+.tringle{
+  position: relative;
+}
+
+.triangle::before{
+  content: '';
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 100px 35px 0 35px;
+  border-color: #586470 transparent transparent transparent;
+  position: absolute;
+  left: 653px;
+  top: 671px;
+  z-index: 1;
 }

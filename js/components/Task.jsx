@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import '../../sass/Task.scss'
 
 class Task extends React.Component {
   constructor(props) {
@@ -34,22 +35,21 @@ class Task extends React.Component {
   render() {
 
     return (
-      <section style={{
-        border: '1px solid red'
-      }
-    }>
+      <section className='taskSection'>
+      <div className='allQuestion'>
         <div>
           <h3>{this.props.question}</h3>
         </div>
         {this.state.shuffledQuestions.map(answer => (
-          <div>
+          <div className='tasks'>
             <label>
-              <input type="radio" className="radio" value={answer} id='userAnswer' name="answer" onClick={this.checkAnswer} onChange={this.handleChange}/>{answer}</label>
+              <input type="radio" className="radio" value={answer} id='userAnswer' name="answer" onClick={this.checkAnswer} checked={this.state.userAnswer == answer} onChange={this.handleChange}/>{answer}</label>
           </div>
         )
       )
     }
-        <button onClick={() => {
+    <p>{this.props.wrongAnswer}</p>
+        <button className='action-buttons shadow animate blue' onClick={() => {
           this.givePoints()
           this.props.onSubmit()
         }}>
@@ -58,7 +58,7 @@ class Task extends React.Component {
             : "START"
           }
         </button>
-
+</div>
       </section>
     )
   }
