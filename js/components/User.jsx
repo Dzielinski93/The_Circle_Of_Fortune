@@ -5,22 +5,17 @@ class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
       name: '',
-      empty:''
+      empty: ''
     };
   }
 
   changeInput = (event) => {
-
+    event.preventDefault()
     this.setState({
-
       [event.target.id]: event.target.value
-
     })
-
   }
-
 
   render() {
     return (
@@ -28,17 +23,22 @@ class User extends React.Component {
         border: '1px solid red'
       }}>
         <div>
-          <form action=""onChange={this.changeInput}>
+          <form action="" onChange={this.changeInput}>
             <label>Your Name :
               <input id="name" type="text" onChange={this.changeInput} value={this.state.name}/>
             </label>
-            <button onClick={this.giveName} >SUBMIT</button>
+            <button onClick={(e) => {
+              e.preventDefault()
+              this.props.onButtonClick(this.state.name)
+              this.setState({name: ''})
+            }}>
+            SUBMIT
+            </button>
           </form>
         </div>
         <div>
-          Name: {this.state.name}
+          Player: {this.props.userName && this.props.userName}
         </div>
-
       </section>
     )
 
