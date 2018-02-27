@@ -5,15 +5,19 @@ class User extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+
       name: '',
       empty: ''
+
     };
   }
 
   changeInput = (event) => {
     event.preventDefault()
     this.setState({
+
       [event.target.id]: event.target.value
+
     })
   }
 
@@ -22,13 +26,20 @@ class User extends React.Component {
       <section className='userSection'>
         <div className='user'>
           <div>
-            <form className="form" action="" onChange={this.changeInput}>
-
-              <input className="question" id="name" type="text" onChange={this.changeInput} value={this.state.name}/>
+            <form
+            className="form"
+            action=""
+            onChange={this.changeInput}>
+              <input
+              className="question"
+              id="name"
+              type="text"
+              onChange={this.changeInput} value={this.state.name}/>
               <label for='name'>
                 <span>What's your name?</span>
               </label>
-              <button className="action-buttons shadow animate blue" onClick={(e) => {
+              <button
+              className="action-button shadow animate blue" onClick={(e) => {
                 e.preventDefault()
                 this.props.onButtonClick(this.state.name)
                 this.setState({name: ''})
@@ -43,7 +54,6 @@ class User extends React.Component {
         </div>
       </section>
     )
-
   }
 }
 

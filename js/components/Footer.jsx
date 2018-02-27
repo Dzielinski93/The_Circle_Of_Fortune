@@ -7,8 +7,8 @@ class Footer extends React.Component {
 
     return (
       <section className='footerSection'>
-        <div className="copyrights">
-          Copyrights 2018 Made by Dejw :)
+        <div className='copyrights'>
+          Copyrights 2018 Made by Dejw
         </div>
       </section>
     )

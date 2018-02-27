@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Lobster');
-
+@import url('https://fonts.googleapis.com/css?family=Berkshire+Swash');
 .taskSection {
   background: #274046;
-  font-family: "Lobster", sans-serif;
+  font-family: "Berkshire Swash", sans-serif;
 }
 
 .tasks{
@@ -10,6 +10,7 @@
   margin: 0 auto;
   background: white;
   border-radius: 20px;
+
 }
 
 .allQuestion{
@@ -19,6 +20,7 @@
   border-radius: 20px;
   padding: 10px 10px 75px 10px;
   position: relative;
+
 
 }
 
@@ -55,9 +57,15 @@ h3 {
  }
 
 
- .action-button:active
+ .action-buttons:active
  {
  	transform: translate(0px,5px);
    -webkit-transform: translate(0px,5px);
  	border-bottom: 1px solid;
+ }
+
+ .answer{
+   color: red;
+   font-size: 20px;
+   margin: 10px 10px 10px 48px;
  }
