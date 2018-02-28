@@ -45,7 +45,7 @@ class Task extends React.Component {
     this.setState({
     pickAnswer: ''
       });
-    },2000)
+    },3000)
   }
 
   render() {
@@ -86,12 +86,15 @@ class Task extends React.Component {
            <div className='answer'>
               <p>
               {this.props.wrongAnswer}              {this.state.pickAnswer}
+              </p><br/>
+              <p>
+              {this.props.looseTurn}
               </p>
            </div>
            <button
            className='action-buttons shadow animate blue'
-           onClick={() => {
-
+           onClick={(e) => {
+              e.preventDefault()
              if (!this.props.answers.length > 0) {
                this.props.handleGameStart()
 
