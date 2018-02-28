@@ -8,7 +8,7 @@ module.exports =[
   {rotateDegree: 2625, fieldEffect: 550},
   {rotateDegree: 2993.5, fieldEffect: 'bankrupt'},
   {rotateDegree: 3360.5, fieldEffect: 5000},
-  {rotateDegree: 3727.5, fieldEffect: 'bankrupt'},
+  {rotateDegree: 3725.5, fieldEffect: 'bankrupt'},
   {rotateDegree: 4095, fieldEffect: 500},
   {rotateDegree: 4470, fieldEffect: 300},
   {rotateDegree: 4845, fieldEffect: 600},

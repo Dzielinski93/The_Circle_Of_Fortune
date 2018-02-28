@@ -106,14 +106,14 @@ class App extends React.Component {
      const section = document.querySelector('.allQuestion')
     if (pointsDegree === 'bankrupt') {
 
-      button.parentNode.removeChild(button)
-
       this.myTimeout = setTimeout(()=>{
+
       this.setState({
         pointsSum: 0,
         wrongAnswer: 'BANKRUPT! Game Over...'
-      })
-    }, 5000);
+       })
+      button.parentNode.removeChild(button)
+     }, 5000);
     }
   }
 

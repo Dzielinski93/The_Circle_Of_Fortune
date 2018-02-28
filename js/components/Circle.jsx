@@ -17,9 +17,6 @@ class Circle extends React.Component {
     return (
       <section className="cirofort-main">
         <div className="cirofort-main__container">
-            <div className="cirofort-main__container--score">
-              SCORE: {this.props.points}
-            </div>
           <div className="cirofort-main__container--for-triangle">
             <img src="../images/adrian_s_wheel_of_fortune_r3_by_packardadrian-d6rdol1.png"
             alt=""
@@ -32,7 +29,7 @@ class Circle extends React.Component {
              />
           </div>
           <div className="cirofort-main__container--score">
-            SCORE: {this.props.points}
+              SCORE: {this.props.points}
           </div>
         </div>
       </section>
