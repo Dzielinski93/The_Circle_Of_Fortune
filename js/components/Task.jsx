@@ -6,7 +6,8 @@ class Task extends React.Component {
     super(props)
     this.state = {
       shuffledQuestions: [...this.props.answers].sort(() => Math.random() - 0.5),
-      userAnswer: ''
+      userAnswer: '',
+      pickAnswer: ''
     }
   }
 //metoda aktualizująca propsy
@@ -39,19 +40,37 @@ class Task extends React.Component {
     })
   }
 
-
+  errorTime(){
+    this.timeout = setTimeout(()=>{
+    this.setState({
+    pickAnswer: ''
+      });
+    },2000)
+  }
 
   render() {
 
     return (
       <section className='taskSection'>
         <div className='allQuestion'>
+           <div className="lives">
+           <img
+           className='heart' src="../images/41YYECsFLpL.png"
+           alt=""/>
+           <img
+           className='heart' src="../images/41YYECsFLpL.png"
+           alt=""/>
+           <img
+           className='heart' src="../images/41YYECsFLpL.png"
+           alt=""/>
+           </div>
            <div>
                <h3>
                {this.props.question}
                </h3>
            </div>
            {this.state.shuffledQuestions.map(answer => (
+
            <div className='tasks'>
             <label>
                <input
@@ -66,16 +85,39 @@ class Task extends React.Component {
         }
            <div className='answer'>
               <p>
-              {this.props.wrongAnswer}
+              {this.props.wrongAnswer}              {this.state.pickAnswer}
               </p>
            </div>
            <button
            className='action-buttons shadow animate blue'
            onClick={() => {
-          this.givePoints()
-          this.props.onSubmit()
-           }
-          }>
+
+             if (!this.props.answers.length > 0) {
+               this.props.handleGameStart()
+
+             } else {
+               const isChecked = (elem) => elem.checked
+
+               const answers = document.querySelectorAll('input.radio')
+
+               const checkedAnswers = Array.from(answers).filter(isChecked)
+
+              if (checkedAnswers.length > 0) {
+
+               this.givePoints()
+               this.props.onSubmit()
+
+          }else{
+
+            this.setState({
+            pickAnswer: 'PICK ONE ANSWER'
+             });
+
+            this.errorTime()
+          }
+        }
+      }
+    }>
           {this.props.isQuestionAvailable
             ? "SUBMIT"
             : "START"

@@ -5,6 +5,7 @@
   font-family: "Berkshire Swash", sans-serif;
 }
 
+
 .tasks{
   max-width: 800px;
   margin: 0 auto;
@@ -20,15 +21,14 @@
   border-radius: 20px;
   padding: 10px 10px 75px 10px;
   position: relative;
-
-
 }
+
 
 h3 {
      font-family: "Lobster", sans-serif;
      font-size: 30px;
-     padding-top: 15px;
  }
+
  .animate
  {
  	transition: all 0.1s;
@@ -47,8 +47,9 @@ h3 {
   left:390px;
  }
 
- .blue
- {
+
+ .blue{
+
  	background-color: white;
  	border-bottom: 5px solid #333333;
    border-left: 1px solid #333333;
@@ -69,3 +70,7 @@ h3 {
    font-size: 20px;
    margin: 10px 10px 10px 48px;
  }
+
+.heart{
+  width: 50px;
+}

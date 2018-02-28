@@ -20,7 +20,7 @@ module.exports =[
   {rotateDegree: 255, fieldEffect: 450},
   {rotateDegree: 270, fieldEffect: 350},
   {rotateDegree: 285, fieldEffect: 800},
-  {rotateDegree: 300, fieldEffect: 0},
+  {rotateDegree: 300, fieldEffect: 'looseAturn'},
   {rotateDegree: 315, fieldEffect: 250},
   {rotateDegree: 330, fieldEffect: 400},
   {rotateDegree: 345, fieldEffect: 500},

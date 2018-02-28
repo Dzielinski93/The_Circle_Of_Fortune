@@ -21,7 +21,8 @@ class App extends React.Component {
       pointsSum: 0,
       answerOfUser: '',
       wrongAnswer: '',
-      userName: null
+      userName: '',
+      nameError: ''
     }
 
     fetch(`https://opentdb.com/api.php?amount=50&category=18&type=multiple`).then(response => {
@@ -105,16 +106,50 @@ class App extends React.Component {
 //sprawdzenie czy wylosowany obiekt a w nim przechowywane punkty nie jest bankrytem
   checkBankrupt(pointsDegree) {
 
+    const button = document.getElementsByClassName('action-buttons');
+
     if (pointsDegree === 'bankrupt') {
 
+      button.disabled = true;
+
       this.setState({
-        pointsSum: 0
+        pointsSum: 0,
+        wrongAnswer: 'BANKRUPT! Game Over...'
       })
     }
   }
 
-//jedna duża metoda która wywołuje wszystkie metody powyżej.
+  checkLooseAturn(pointsDegree) {
 
+    const button = document.getElementsByClassName('action-buttons');
+
+    if (pointsDegree === 'looseAturn') {
+
+
+      this.setState({
+
+        wrongAnswer: 'U LOOSE A TURN! No points this time...'
+
+      })
+    }
+  }
+
+ gameOver(){
+   const button = document.getElementsByClassName('action-buttons');
+   const lives = document.querySelector('.lives');
+
+   if (lives.length === 0){
+
+   this.button.disabled = true;
+   this.setState({
+
+     wrongAnswer: 'Game Over...'
+
+   })
+ }
+}
+
+//jedna duża metoda która wywołuje wszystkie metody powyżej.
   getTaskDetails() {
     const number = this.counter()
     const degreeNumber = this.circleCounter()
@@ -124,9 +159,34 @@ class App extends React.Component {
     this.getRandomDegree(degreeNumber)
     this.getDegreePoints(degreeNumber)
     this.checkBankrupt(pointsDegree)
-
+    this.checkLooseAturn(pointsDegree)
   }
 
+  startGame () {
+
+    const button = document.getElementsByClassName('action-buttons');
+
+    if (this.state.userName == '') {
+
+      button.disabled = true;
+
+      this.setState({
+
+        wrongAnswer: 'Please put your name and submit'
+
+      })
+
+      this.clearInfo()
+
+   }else {
+
+    const number = this.counter()
+    const degreeNumber = this.circleCounter()
+    this.getRandomDegree(degreeNumber)
+    this.getAnswers(number)
+    this.getOneQuestion(number)
+  }
+}
 //metoda zmieniająca wartość state 'userName'
   getName(name) {
     this.setState({
@@ -134,6 +194,14 @@ class App extends React.Component {
       userName: name
 
     })
+  }
+
+  clearInfo(){
+    this.timeout = setTimeout(()=>{
+    this.setState({
+    wrongAnswer: '',
+      });
+    },3000)
   }
 
 // funkcja strzałkowa która za argument przyjmuje poprawną odpowiedz
@@ -147,16 +215,21 @@ class App extends React.Component {
 
       })
     } else {
+
+      document.querySelector('.lives').removeChild(document.querySelector('.heart'))
+
       this.setState({
 
         wrongAnswer: "WRONG ANSWER"
 
       })
     }
+    this.clearInfo()
   }
 
+
   render() {
-//wyconsologuje poprawną odpowiedź by sprawdzać czy aplikacja działa w sposób poprawny
+
     console.log(this.state.rightAnswers);
 
 
@@ -164,10 +237,13 @@ class App extends React.Component {
       <section>
         <Header/>
         <User
-        userName={this.state.userName} onButtonClick={this.getName.bind(this)}/>
+        userName={this.state.userName} onButtonClick={this.getName.bind(this)}
+        nameError={this.state.nameError}
+        clearInfo={this.clearInfo.bind(this)}/>
         <Circle
         degree={this.state.randomDegree} points={this.state.pointsSum} wrongAnswer={this.state.wrongAnswer} method={this.userAnswerEvent}/>
         <Task
+        handleGameStart={this.startGame.bind(this)}
         isQuestionAvailable={!!this.state.question} method={this.userAnswerEvent} answers={this.state.answers} question={this.state.question} rightAnswer={this.state.rightAnswers} points={this.state.pointsSum} degreePoints={this.state.degreePoints} onSubmit={this.getTaskDetails.bind(this)}
         wrongAnswer={this.state.wrongAnswer}/>
         <Footer/>

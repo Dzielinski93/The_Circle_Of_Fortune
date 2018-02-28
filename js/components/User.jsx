@@ -7,10 +7,12 @@ class User extends React.Component {
     this.state = {
 
       name: '',
-      empty: ''
+      empty: '',
+      errorName:''
 
     };
   }
+
 
   changeInput = (event) => {
     event.preventDefault()
@@ -21,11 +23,22 @@ class User extends React.Component {
     })
   }
 
+  clearInfo(){
+    this.timeout = setTimeout(()=>{
+    this.setState({
+      errorName: '',
+      });
+    },3000)
+  }
+
   render() {
     return (
       <section className='userSection'>
         <div className='user'>
           <div>
+            <div className="errorMessage">
+               <p>{this.state.errorName}</p>
+            </div>
             <form
             className="form"
             action=""
@@ -35,15 +48,36 @@ class User extends React.Component {
               id="name"
               type="text"
               onChange={this.changeInput} value={this.state.name}/>
-              <label for='name'>
-                <span>What's your name?</span>
+              <label for='name'>What's your name?
               </label>
               <button
               className="action-button shadow animate blue" onClick={(e) => {
+
+              e.preventDefault()
+
+              const nameButton = document.getElementsByClassName('action-button')
+
+               if (this.state.name.length == 0) {
+
+                 nameButton.disabled = true;
+
+                 this.setState({
+
+                   errorName: 'Please put your name and submit'
+
+                 })
+                 this.clearInfo()
+               }else{
                 e.preventDefault()
+
                 this.props.onButtonClick(this.state.name)
-                this.setState({name: ''})
-              }}>
+
+                this.setState({
+                  name: ''
+                })
+              }
+            }
+          }>
                 SUBMIT
               </button>
             </form>

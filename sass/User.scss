@@ -35,7 +35,7 @@
 	font-size: 25px;
 	color: #333333;
 	text-decoration: none;
-  
+
 }
 
 .blue
@@ -152,11 +152,6 @@ textarea.question:focus + label {
 }
 
 
-
-
-
-
-
 @-webkit-keyframes appear {
   100% {
     opacity: 1;
@@ -167,4 +162,10 @@ textarea.question:focus + label {
   100% {
     opacity: 1;
   }
+}
+
+.errorMessage{
+  font-family: "Lobster", sans-serif;
+  color:red;
+  font-size: 24px;
 }
