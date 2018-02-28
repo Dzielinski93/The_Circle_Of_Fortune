@@ -15,7 +15,7 @@
 }
 
 .allQuestion{
-  max-width: 900px;
+  max-width: 1046px;
   margin: 0 auto;
   background: #e6dada;
   border-radius: 20px;
@@ -27,10 +27,10 @@
 h3 {
      font-family: "Lobster", sans-serif;
      font-size: 30px;
+     margin-left: 80px;
  }
 
- .animate
- {
+ .animate{
  	transition: all 0.1s;
  	-webkit-transition: all 0.1s;
  }
@@ -44,7 +44,7 @@ h3 {
  	font-size: 25px;
  	color: #333333;
  	text-decoration: none;
-  left:390px;
+  left:455px;
  }
 
 

@@ -52,17 +52,15 @@ class App extends React.Component {
     })
   }
 
-//licznik który losuje liczbę od 0 do 49. Czyli numer jednego z 50 pytań pobranych z api.
   counter() {
     return Math.floor((Math.random() * 49))
   }
 
-//licznik który losuje liczbę od 0 do 23 - losuje jeden element z tablicy obiektów(obiekt przechowuję liczbę punktów oraz odpowiedni kąt zatrzymania się koła)
+
   circleCounter() {
     return Math.floor((Math.random() * 23))
   }
 
-//metoda która wstawia wylosowany obiekt w tablicy przechowujący wartość kąta, ktorego losujemy.
   getRandomDegree(degreeNumber) {
     const newDegree = points[degreeNumber].rotateDegree
     this.setState({
@@ -72,7 +70,7 @@ class App extends React.Component {
     });
   }
 
-//metoda która wstawia wylosowany obiekt w tablicy przechowujący wartość punktów, ktore losujemy.
+
   getDegreePoints(degreeNumber) {
     const pointsDegree = points[degreeNumber].fieldEffect
     this.setState({
@@ -82,7 +80,6 @@ class App extends React.Component {
     });
   }
 
-//metoda dzieki której uzyskujemy jedno wylosowane pytanie
   getOneQuestion(number) {
 
     this.setState({
@@ -92,7 +89,6 @@ class App extends React.Component {
     });
   }
 
-//pobranie do state odpowiedzi na pytanie
   getAnswers(number) {
     const rightAnswer = this.state.allData[number].correct_answer
     const wrongAnswers = this.state.allData[number].incorrect_answers
@@ -104,20 +100,20 @@ class App extends React.Component {
 
   }
 
-//sprawdzenie czy wylosowany obiekt a w nim przechowywane punkty nie jest bankrytem
   checkBankrupt(pointsDegree) {
 
-     const button = document.getElementsByClassName('action-buttons');
+     const button = document.querySelector('.action-buttons');
      const section = document.querySelector('.allQuestion')
     if (pointsDegree === 'bankrupt') {
 
       button.parentNode.removeChild(button)
 
+      this.myTimeout = setTimeout(()=>{
       this.setState({
         pointsSum: 0,
         wrongAnswer: 'BANKRUPT! Game Over...'
       })
-
+    }, 5000);
     }
   }
 
@@ -128,11 +124,14 @@ class App extends React.Component {
     if (pointsDegree === 'looseAturn') {
 
 
+      this.myTimeout = setTimeout(()=>{
+
       this.setState({
 
         looseTurn: 'U LOOSE A TURN! No points this time...'
 
       })
+     }, 5000);
       this.clearInfo()
     }
   }
@@ -142,7 +141,7 @@ class App extends React.Component {
    const button = document.querySelector('.action-buttons');
    const lives = document.querySelectorAll('.heart');
    const section = document.querySelector('.allQuestion')
-console.log(section);
+
    if (lives.length == 0){
 
      button.parentNode.removeChild(button)
@@ -199,7 +198,6 @@ console.log(section);
     this.checkLooseAturn(pointsDegree)
   }
 }
-//metoda zmieniająca wartość state 'userName'
   getName(name) {
     this.setState({
 
@@ -218,9 +216,6 @@ console.log(section);
   }
 
 
-
-
-// funkcja strzałkowa która za argument przyjmuje poprawną odpowiedz
   userAnswerEvent = (isRightAnswer) => {
 
      const button = document.getElementsByClassName('action-buttons');

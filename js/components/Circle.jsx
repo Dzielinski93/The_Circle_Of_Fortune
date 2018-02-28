@@ -26,10 +26,13 @@ class Circle extends React.Component {
             className='cirofort-main__container--fortune-circle'
             style={{
               transform: `rotate(${this.props.degree}deg)`,
-              transition: " all 4s linear"
+              transition: " all 4s ease-in-out 1.5s"
                }
               }
              />
+          </div>
+          <div className="cirofort-main__container--score">
+            SCORE: {this.props.points}
           </div>
         </div>
       </section>
