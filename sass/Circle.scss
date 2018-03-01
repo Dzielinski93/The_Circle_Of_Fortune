@@ -24,6 +24,7 @@
   width: 55%;
   margin-top: 70px;
   z-index: 0;
+  filter: drop-shadow(0px 0px 20px black);
 }
 
 
@@ -42,4 +43,5 @@
   left: 505px;
   top: 17px;
   z-index: 1;
+  filter: drop-shadow(5px 0px 5px black);
 }
