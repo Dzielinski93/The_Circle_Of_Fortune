@@ -1,4 +1,4 @@
-The Circle Of Fortune.
+# The Circle Of Fortune.
 
 Hello ! My application is a simple game, all created in React. JS, which has very simple rules:
 
@@ -9,5 +9,15 @@ Hello ! My application is a simple game, all created in React. JS, which has ver
 5. In case, that all the players "lives" will disappear, the game ends.
 6. If the "bankrupt" value is drawn, the player loses all points and the game also ends.
 7. If you draw the "Loose a turn" value, the player must answer the drawn question, but he  doesn't receive points for it.
+
+ ## Technologies:
+
+- REACT, JS
+- Webpack
+
+
+
+PS In future, i want to save the best scores on server. 
+
 
 The application uses the API from the website: https://opentdb.com/api.php?amount=50&category=18&type=multiple, which give us 50 question with multiple answers.
