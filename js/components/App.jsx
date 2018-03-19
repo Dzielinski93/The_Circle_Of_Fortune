@@ -82,11 +82,11 @@ class App extends React.Component {
 
   getOneQuestion(number) {
 
-    this.setState({
-
-      question: this.state.allData[number].question
-
-    });
+    this.myTimeout = setTimeout(()=>{
+      this.setState({
+        question: this.state.allData[number].question
+      });
+    }, 5500);
   }
 
   getAnswers(number) {
@@ -95,9 +95,9 @@ class App extends React.Component {
     const newAnswers = [
       rightAnswer, ...wrongAnswers
     ]
-
-    this.setState({answers: newAnswers, rightAnswers: rightAnswer});
-
+    this.myTimeout = setTimeout(()=>{
+      this.setState({answers: newAnswers, rightAnswers: rightAnswer});
+    }, 5500);
   }
 
   checkBankrupt(pointsDegree) {
@@ -107,6 +107,8 @@ class App extends React.Component {
     if (pointsDegree === 'bankrupt') {
 
       this.myTimeout = setTimeout(()=>{
+        section.removeChild(document.querySelector('.random_question'))
+        section.removeChild(document.querySelector('.random_answers'))
 
       this.setState({
         pointsSum: 0,
@@ -136,68 +138,6 @@ class App extends React.Component {
     }
   }
 
- gameOver(){
-
-   const button = document.querySelector('.action-buttons');
-   const lives = document.querySelectorAll('.heart');
-   const section = document.querySelector('.allQuestion')
-
-   if (lives.length == 0){
-
-     button.parentNode.removeChild(button)
-
-   this.setState({
-
-     wrongAnswer: 'Game Over...'
-
-   })
-
- }
-}
-
-//jedna duża metoda która wywołuje wszystkie metody powyżej.
-  getTaskDetails() {
-    const number = this.counter()
-    const degreeNumber = this.circleCounter()
-    const pointsDegree = points[degreeNumber].fieldEffect
-    this.getAnswers(number)
-    this.getOneQuestion(number)
-    this.getRandomDegree(degreeNumber)
-    this.getDegreePoints(degreeNumber)
-    this.checkBankrupt(pointsDegree)
-    this.checkLooseAturn(pointsDegree)
-    this.gameOver()
-  }
-
-  startGame () {
-
-    const button = document.getElementsByClassName('action-buttons');
-
-    if (this.state.userName == '') {
-
-      button.disabled = true;
-
-      this.setState({
-
-        wrongAnswer: 'Please put your name and submit'
-
-      })
-
-      this.clearInfo()
-
-   }else {
-
-    const number = this.counter()
-    const degreeNumber = this.circleCounter()
-    const pointsDegree = points[degreeNumber].fieldEffect
-    this.getRandomDegree(degreeNumber)
-    this.getAnswers(number)
-    this.getOneQuestion(number)
-    this.getDegreePoints(degreeNumber)
-    this.checkBankrupt(pointsDegree)
-    this.checkLooseAturn(pointsDegree)
-  }
-}
   getName(name) {
     this.setState({
 
@@ -242,10 +182,71 @@ class App extends React.Component {
   }
 
 
+ gameOver(){
+
+   const button = document.querySelector('.action-buttons');
+   const lives = document.querySelectorAll('.heart');
+   const section = document.querySelector('.allQuestion')
+
+   if (lives.length == 0){
+     section.removeChild(document.querySelector('.random_question'))
+     section.removeChild(document.querySelector('.random_answers'))
+     button.parentNode.removeChild(button)
+
+   this.setState({
+
+     wrongAnswer: 'Game Over...'
+
+   })
+
+ }
+}
+
+startGame () {
+
+  const button = document.getElementsByClassName('action-buttons');
+
+  if (this.state.userName == '') {
+
+    button.disabled = true;
+
+    this.setState({
+
+      wrongAnswer: 'Please put your name and submit'
+
+    })
+
+    this.clearInfo()
+
+ }else {
+
+  const number = this.counter()
+  const degreeNumber = this.circleCounter()
+  const pointsDegree = points[degreeNumber].fieldEffect
+  this.getRandomDegree(degreeNumber)
+  this.getAnswers(number)
+  this.getOneQuestion(number)
+  this.getDegreePoints(degreeNumber)
+  this.checkBankrupt(pointsDegree)
+  this.checkLooseAturn(pointsDegree)
+}
+}
+
+  getTaskDetails() {
+    const number = this.counter()
+    const degreeNumber = this.circleCounter()
+    const pointsDegree = points[degreeNumber].fieldEffect
+    this.getAnswers(number)
+    this.getOneQuestion(number)
+    this.getRandomDegree(degreeNumber)
+    this.getDegreePoints(degreeNumber)
+    this.checkBankrupt(pointsDegree)
+    this.checkLooseAturn(pointsDegree)
+    this.gameOver()
+  }
+
+
   render() {
-
-    console.log(this.state.rightAnswers);
-
 
     return (
       <section>

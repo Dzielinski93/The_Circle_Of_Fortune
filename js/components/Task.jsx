@@ -66,25 +66,27 @@ class Task extends React.Component {
            className='heart' src="../images/41YYECsFLpL.png"
            alt=""/>
            </div>
-           <div>
+           <div className="random_question">
                <h3>
                {this.props.question}
                </h3>
            </div>
-           {this.state.shuffledQuestions.map(answer => (
-
-           <div className='tasks'>
-            <label>
-               <input
+          <div className="random_answers">
+             {this.state.shuffledQuestions.map(answer => (
+             <div className='tasks'>
+              <label>
+                 <input
                type="radio"
                className="radio"
                value={answer}
                id='userAnswer'
-               name="answer" onClick={this.checkAnswer} checked={this.state.userAnswer == answer} onChange={this.handleChange}/>{answer}</label>
+               name="answer" onClick={this.checkAnswer} checked={this.state.userAnswer == answer} onChange={this.handleChange}/>{answer}
+               </label>
+              </div>
+              )
+             )
+            }
           </div>
-          )
-         )
-        }
            <div className='answer'>
               <p>
               {this.props.wrongAnswer}              {this.state.pickAnswer}

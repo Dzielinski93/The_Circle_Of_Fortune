@@ -17,7 +17,12 @@ Hello ! My application is a simple game, all created in React. JS, which has ver
 
 
 
-PS In future, i want to save the best scores on server. 
+PS In future, i want to save the best scores on server.
 
 
 The application uses the API from the website: https://opentdb.com/api.php?amount=50&category=18&type=multiple, which give us 50 question with multiple answers.
+
+To run APP you need to write in terminal:
+
+1. npm install
+2. npm run dev
